@@ -1,0 +1,275 @@
+/* Custom styles for the calendar application */
+
+/* Base styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1c1c1e;
+    color: #ffffff;
+}
+
+/* Calendar container */
+.calendar-container {
+    background-color: #2c2c2e;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+/* Calendar header */
+.calendar-header {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Navigation buttons */
+.nav-button {
+    padding: 0.5rem 1rem;
+    background-color: #3a3a3c;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #48484a;
+}
+
+.logout-button {
+    padding: 0.5rem 1rem;
+    background-color: #ff453a;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    background-color: #ff6961;
+}
+
+/* Calendar grid */
+.calendar-content {
+    padding: 0.5rem;
+}
+
+/* Weekday header */
+.weekday-header {
+    text-align: center;
+    font-weight: 600;
+    color: #8e8e93;
+}
+
+/* Calendar day */
+.calendar-day {
+    aspect-ratio: 1;
+    padding: 0.5rem;
+    border: 1px solid #3a3a3c;
+    border-radius: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+    background-color: #3a3a3c;
+}
+
+.calendar-day.not-current-month {
+    background-color: #2c2c2e;
+}
+
+.calendar-day.today {
+    border: 2px solid #0a84ff;
+    background-color: rgba(10, 132, 255, 0.125);
+}
+
+.calendar-day .date {
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+.calendar-day.today .date {
+    font-weight: 700;
+    color: #0a84ff;
+}
+
+/* Event styles */
+.event {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.25rem;
+    background-color: rgba(10, 132, 255, 0.125);
+    color: #0a84ff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.event .flex {
+    min-width: 0;
+}
+
+.event span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+}
+
+/* Modal styles */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #2c2c2e;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 28rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #8e8e93;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: #1c1c1e;
+    border: 1px solid #3a3a3c;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #0a84ff;
+}
+
+/* Modal buttons */
+.modal-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.modal-button-primary {
+    background-color: #0a84ff;
+    color: #ffffff;
+}
+
+.modal-button-primary:hover {
+    background-color: #0071e3;
+}
+
+.modal-button-secondary {
+    background-color: #3a3a3c;
+    color: #ffffff;
+}
+
+.modal-button-secondary:hover {
+    background-color: #48484a;
+}
+
+/* Hide elements with x-cloak until Alpine.js is loaded */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .calendar-container {
+        padding: 1rem;
+    }
+    
+    .calendar-day {
+        padding: 0.25rem;
+    }
+    
+    .event {
+        font-size: 0.7rem;
+        padding: 0.125rem;
+    }
+}
+
+/* Event indicator styling */
+.event-indicator {
+    max-height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Calendar day styling */
+.aspect-square {
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    z-index: 1; /* Base z-index for calendar days */
+}
+
+.aspect-square:hover {
+    transform: scale(1.02);
+    z-index: 10; /* Higher z-index on hover, but still below modal */
+}
+
+/* Add a subtle indicator for clickable days */
+.aspect-square.cursor-pointer::after {
+    content: '+';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.75rem;
+    color: #6B7280;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.aspect-square.cursor-pointer:hover::after {
+    opacity: 1;
+}
+
+/* Event indicators */
+.aspect-square .text-xs {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Modal animation */
+.fixed {
+    transition: opacity 0.2s ease-in-out;
+    z-index: 50; /* Ensure modal is always on top */
+}
+
+/* Calendar content */
+.calendar-content {
+    /* No animation or shadow */
+    padding: 2px; /* Add padding to prevent cutting off outlines */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .grid-cols-7 {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    .text-sm {
+        font-size: 0.75rem;
+    }
+}
